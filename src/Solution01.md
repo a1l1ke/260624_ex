@@ -45,12 +45,12 @@ classDiagram
 * **부모 생성자 호출** (`super`): 자식 클래스의 인스턴스를 만들 때, 내부적으로 부모 클래스의 멤버들도 초기화되어야 합니다. 따라서 자식 생성자의 첫 줄에는 반드시 부모 생성자를 호출하는 `super(...)`가 와야 합니다.
 
 ### 🎭 3. 다형성(Polymorphism)과 변수 선언
-자바에서는 부모 타입의 변수로 자식 객체를 가리킬 수 있습니다. 이를 **업캐스팅(Upcasting)**이라고 합니다.
+자바에서는 부모 타입의 변수로 자식 객체를 가리킬 수 있습니다. 이를 **업캐스팅**(Upcasting)이라고 합니다.
 ```java
 // Programmer(부모) 타입의 변수 programmer2가 BackendProgrammer(자식) 객체를 가리킴
 Programmer programmer2 = new BackendProgrammer("John", "Java");
 ```
-이 상태에서 변수를 사용할 때, **멤버 변수(필드)**에 접근하는 것과 **메서드**를 호출하는 것의 동작이 다릅니다. 이 차이를 이해하는 것이 자바의 핵심입니다!
+이 상태에서 변수를 사용할 때, **멤버 변수**(필드)에 접근하는 것과 **메서드**를 호출하는 것의 동작이 다릅니다. 이 차이를 이해하는 것이 자바의 핵심입니다!
 
 ---
 
@@ -61,7 +61,7 @@ Programmer programmer2 = new BackendProgrammer("John", "Java");
 | 구분 | 정적 바인딩(Static Binding) | 동적 바인딩(Dynamic Binding) |
 | :--- | :--- | :--- |
 | **정의** | 컴파일 시점에 참조할 대상(메서드/변수)이 결정됨 | 실행 시점(Runtime)에 실제 객체 타입을 확인하고 참조 대상을 결정함 |
-| **적용 대상** | **멤버 변수(필드)**, `static` 메서드, `private` 메서드, `final` 메서드 | **오버라이딩된 일반 메서드** |
+| **적용 대상** | **멤버 변수**(필드), `static` 메서드, `private` 메서드, `final` 메서드 | **오버라이딩된 일반 메서드** |
 | **결정 기준** | 변수의 **선언된 타입**(Declared Type) | 실제 메모리에 할당된 **실제 객체 타입**(Actual Object Type) |
 | **코드 예시** | `programmer2.version` ➡️ `Programmer` 클래스의 `"1.0"` 반환 | `programmer2.work()` ➡️ `BackendProgrammer` 객체의 `work()` 실행 |
 
@@ -81,7 +81,7 @@ Programmer programmer2 = new BackendProgrammer("John", "Java");
 * `p.work()`는 **"John은 Java로 백엔드 프로그래밍을 합니다."**를 출력합니다.
 
 **이유:**
-자바에서 **멤버 변수(필드)**는 다형성이 적용되지 않으며 **정적 바인딩**(Static Binding)을 따릅니다. 따라서 컴파일러는 변수 `p`의 선언 타입인 `Programmer` 클래스에 정의된 `version` 필드를 연결하므로 `"1.0"`이 반환됩니다.
+자바에서 **멤버 변수**(필드)는 다형성이 적용되지 않으며 **정적 바인딩**(Static Binding)을 따릅니다. 따라서 컴파일러는 변수 `p`의 선언 타입인 `Programmer` 클래스에 정의된 `version` 필드를 연결하므로 `"1.0"`이 반환됩니다.
 반면, **일반 인스턴스 메서드**는 **동적 바인딩**(Dynamic Binding)을 따릅니다. 런타임에 변수 `p`가 가리키는 실제 인스턴스인 `BackendProgrammer` 클래스에서 재정의된(Overridden) `work()` 메서드를 호출하므로 자식 클래스의 메시지가 출력됩니다.
 
 #### Q3. `@Override` 어노테이션의 역할과 컴파일 에러 예시(`work2()`)에 대해 설명해주세요.
