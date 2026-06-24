@@ -1,6 +1,6 @@
 # 자바 개념 정리: 상속, 생성자, 그리고 바인딩 (Solution01)
 
-본 문서는 [Solution01.java](file:///Users/morgan/Documents/workspace/260624_ex/src/Solution01.java)에 구현된 코드를 바탕으로, 자바의 핵심 개념인 **상속(Inheritance)**, **생성자 체이닝(Constructor Chaining)**, **다형성(Polymorphism)**, 그리고 **정적/동적 바인딩(Static/Dynamic Binding)**에 대해 초심자용 설명과 면접대비용 핵심 요약으로 나누어 설명합니다.
+본 문서는 [Solution01.java](file:///Users/morgan/Documents/workspace/260624_ex/src/Solution01.java)에 구현된 코드를 바탕으로, 자바의 핵심 개념인 **상속(Inheritance)**, **생성자 체이닝(Constructor Chaining)**, **다형성(Polymorphism)**, 그리고 **정적/동적 바인딩**(Static/Dynamic Binding)에 대해 초심자용 설명과 면접대비용 핵심 요약으로 나누어 설명합니다.
 
 ---
 
@@ -81,8 +81,8 @@ Programmer programmer2 = new BackendProgrammer("John", "Java");
 * `p.work()`는 **"John은 Java로 백엔드 프로그래밍을 합니다."**를 출력합니다.
 
 **이유:**
-자바에서 **멤버 변수(필드)**는 다형성이 적용되지 않으며 **정적 바인딩(Static Binding)**을 따릅니다. 따라서 컴파일러는 변수 `p`의 선언 타입인 `Programmer` 클래스에 정의된 `version` 필드를 연결하므로 `"1.0"`이 반환됩니다.
-반면, **일반 인스턴스 메서드**는 **동적 바인딩(Dynamic Binding)**을 따릅니다. 런타임에 변수 `p`가 가리키는 실제 인스턴스인 `BackendProgrammer` 클래스에서 재정의된(Overridden) `work()` 메서드를 호출하므로 자식 클래스의 메시지가 출력됩니다.
+자바에서 **멤버 변수(필드)**는 다형성이 적용되지 않으며 **정적 바인딩**(Static Binding)을 따릅니다. 따라서 컴파일러는 변수 `p`의 선언 타입인 `Programmer` 클래스에 정의된 `version` 필드를 연결하므로 `"1.0"`이 반환됩니다.
+반면, **일반 인스턴스 메서드**는 **동적 바인딩**(Dynamic Binding)을 따릅니다. 런타임에 변수 `p`가 가리키는 실제 인스턴스인 `BackendProgrammer` 클래스에서 재정의된(Overridden) `work()` 메서드를 호출하므로 자식 클래스의 메시지가 출력됩니다.
 
 #### Q3. `@Override` 어노테이션의 역할과 컴파일 에러 예시(`work2()`)에 대해 설명해주세요.
 **A3.**
