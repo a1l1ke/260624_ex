@@ -5,17 +5,25 @@ public class Solution01 {
 //        programmer.name = "John";
 //        programmer.language = "Java";
         programmer.work();
+        System.out.println("programmer.version = " + programmer.version);
         System.out.println("programmer = " + programmer);
 //        BackendProgrammer bp = new BackendProgrammer();
         BackendProgrammer bp = new BackendProgrammer("Jane", "Python");
 //        bp.name = "Jane";
 //        bp.language = "Python";
         bp.work();
+        System.out.println("bp.version = " + bp.version);
         System.out.println("bp = " + bp);
+
+        Programmer programmer2 = new BackendProgrammer("John", "Java");
+        System.out.println("programmer2.version = " + programmer2.version); // 정적 바인딩 예시
+        System.out.println("programmer2 = " + programmer2); // 동적 바인딩 예시
     }
 }
 
 class BackendProgrammer extends Programmer {
+    String version = "1.1";
+
     //    BackendProgrammer() {
 //        super();
 //        super(name, lauguage);
@@ -47,6 +55,7 @@ class BackendProgrammer extends Programmer {
 }
 
 class Programmer {
+    String version = "1.0";
     String name;
     String language;
 
