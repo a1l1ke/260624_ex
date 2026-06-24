@@ -37,10 +37,10 @@ flowchart TD
 
 | 접근 제어자 | 클래스 내부 | 동일 패키지 | 상속받은 자식 클래스 (패키지 무관) | 전체 공개 |
 | :--- | :---: | :---: | :---: | :---: |
-| **`public`** | ✅ | ✅ | ✅ | ✅ |
-| **`protected`** | ✅ | ✅ | ✅ | ❌ |
-| **`default` (선언 생략)** | ✅ | ✅ | ❌ | ❌ |
-| **`private`** | ✅ | ❌ | ❌ | ❌ |
+| `public` | ✅ | ✅ | ✅ | ✅ |
+| `protected` | ✅ | ✅ | ✅ | ❌ |
+| `default` (선언 생략) | ✅ | ✅ | ❌ | ❌ |
+| `private` | ✅ | ❌ | ❌ | ❌ |
 
 * **실제 예시** (`HouseEngineer.java`): 
   `Solution02.Engineer`에 선언된 `protected String value`는 다른 패키지(`com.example`)에 있는 자식 클래스인 `HouseEngineer` 내부에서는 접근할 수 있습니다. 반면, 자식이 아닌 일반 클래스인 `House`에서는 접근을 시도하면 컴파일 에러가 발생합니다.
@@ -98,7 +98,7 @@ e3.work();
 
 #### Q2. 만약 부모 클래스인 `Engineer`의 `getVersion()`을 `private`에서 `protected` 또는 `default`로 변경하면 출력 결과가 어떻게 달라지나요?
 **A2.**
-출력 결과가 **"2.0"**으로 변경됩니다.
+출력 결과가 "**2.0**"으로 변경됩니다.
 부모 클래스의 `getVersion()` 메서드가 `protected` 혹은 패키지 권한(`default`)이 되면 자식 클래스로 상속되며, 자식 클래스(`CarEngineer`)의 `getVersion()`은 부모의 메서드를 정상적으로 **오버라이딩**(Overriding)하게 됩니다. 이 경우 인스턴스 메서드로서 **동적 바인딩**(Dynamic Binding)이 적용되므로, 런타임 시점에 실제 인스턴스인 `CarEngineer` 객체에 재정의된 `getVersion()` 메서드가 호출되어 `2.0`이 출력됩니다.
 
 #### Q3. 자식 클래스에서 오버라이딩을 할 때 접근 제어자를 부모보다 더 좁은 범위로 선언할 수 없는 이유는 다형성 관점에서 무엇인가요?
