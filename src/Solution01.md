@@ -77,8 +77,8 @@ Programmer programmer2 = new BackendProgrammer("John", "Java");
 
 #### Q2. `Programmer p = new BackendProgrammer("John", "Java");`가 실행되었을 때, `p.version`과 `p.work()`의 결과는 각각 무엇이며 그 이유는 무엇인가요?
 **A2.**
-* `p.version`은 **`"1.0"`**입니다.
-* `p.work()`는 **`"John은 Java로 백엔드 프로그래밍을 합니다."`**를 출력합니다.
+* `p.version`은 **"1.0"**입니다.
+* `p.work()`는 **"John은 Java로 백엔드 프로그래밍을 합니다."**를 출력합니다.
 
 **이유:**
 자바에서 **멤버 변수(필드)는 다형성이 적용되지 않으며 정적 바인딩(Static Binding)**을 따릅니다. 따라서 컴파일러는 변수 `p`의 선언 타입인 `Programmer` 클래스에 정의된 `version` 필드를 연결하므로 `"1.0"`이 반환됩니다.

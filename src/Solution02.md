@@ -92,13 +92,13 @@ e3.work();
 
 #### Q1. `Engineer e3 = new CarEngineer(); e3.work();`를 실행했을 때 `CarEngineer`의 `getVersion()`이 아닌 `Engineer`의 `getVersion()`이 실행되어 `1.0`이 출력되는 이유는 무엇인가요?
 **A1.**
-**`private` 메서드는 오버라이딩 대상이 아니며, 정적 바인딩(Static Binding)되기 때문**입니다.
+`private` **메서드는 오버라이딩 대상이 아니며, 정적 바인딩(Static Binding)되기 때문**입니다.
 `private` 접근 제어자가 붙은 메서드는 선언된 클래스 내부에서만 보이며 자식 클래스에 상속되지 않습니다. 따라서 `CarEngineer`에 정의된 `private String getVersion()`은 부모의 메서드를 오버라이딩한 것이 아니라, 우연히 이름이 같은 완전히 새로운 독립된 메서드일 뿐입니다.
 부모 클래스의 `work()` 메서드는 `Engineer` 클래스 내부에서 컴파일될 때, 자신이 가지고 있는 `private getVersion()`을 호출하도록 컴파일 타임에 결정(정적 바인딩)됩니다. 런타임에 실제 인스턴스가 `CarEngineer`이더라도 `work()` 메서드 내부의 `private` 메서드 호출 위치는 동적으로 바인딩되지 않으므로 `1.0`이 출력됩니다.
 
 #### Q2. 만약 부모 클래스인 `Engineer`의 `getVersion()`을 `private`에서 `protected` 또는 `default`로 변경하면 출력 결과가 어떻게 달라지나요?
 **A2.**
-출력 결과가 **`"2.0"`**으로 변경됩니다.
+출력 결과가 **"2.0"**으로 변경됩니다.
 부모 클래스의 `getVersion()` 메서드가 `protected` 혹은 패키지 권한(`default`)이 되면 자식 클래스로 상속되며, 자식 클래스(`CarEngineer`)의 `getVersion()`은 부모의 메서드를 정상적으로 **오버라이딩(Overriding)**하게 됩니다. 이 경우 인스턴스 메서드로서 **동적 바인딩(Dynamic Binding)**이 적용되므로, 런타임 시점에 실제 인스턴스인 `CarEngineer` 객체에 재정의된 `getVersion()` 메서드가 호출되어 `2.0`이 출력됩니다.
 
 #### Q3. 자식 클래스에서 오버라이딩을 할 때 접근 제어자를 부모보다 더 좁은 범위로 선언할 수 없는 이유는 다형성 관점에서 무엇인가요?
