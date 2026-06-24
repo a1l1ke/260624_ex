@@ -1,6 +1,6 @@
 # 자바 개념 정리: 상속, 생성자, 그리고 바인딩 (Solution01)
 
-본 문서는 [Solution01.java](file:///Users/morgan/Documents/workspace/260624_ex/src/Solution01.java)에 구현된 코드를 바탕으로, 자바의 핵심 개념인 **상속(Inheritance), 생성자 체이닝(Constructor Chaining), 다형성(Polymorphism), 그리고 정적/동적 바인딩(Static/Dynamic Binding)**에 대해 초심자용 설명과 면접대비용 핵심 요약으로 나누어 설명합니다.
+본 문서는 [Solution01.java](file:///Users/morgan/Documents/workspace/260624_ex/src/Solution01.java)에 구현된 코드를 바탕으로, 자바의 핵심 개념인 **상속(Inheritance)**, **생성자 체이닝(Constructor Chaining)**, **다형성(Polymorphism)**, 그리고 **정적/동적 바인딩(Static/Dynamic Binding)**에 대해 초심자용 설명과 면접대비용 핵심 요약으로 나누어 설명합니다.
 
 ---
 
@@ -36,13 +36,13 @@ classDiagram
 
 ### 👶 1. 상속(Inheritance)이란 무엇인가요?
 상속은 이미 만들어진 클래스(부모/상위 클래스)의 변수와 메서드를 새로운 클래스(자식/하위 클래스)가 그대로 물려받는 것입니다.
-* **부모 클래스 (`Programmer`)**: 기본이 되는 클래스로, 이름(`name`)과 사용 언어(`language`), 그리고 일하기(`work()`) 기능을 가집니다.
-* **자식 클래스 (`BackendProgrammer`)**: 부모의 모든 특성을 물려받은 상태에서, 백엔드 개발자만의 고유한 기능(예: `work()` 메서드의 재정의)을 추가로 가집니다.
+* **부모 클래스** (`Programmer`): 기본이 되는 클래스로, 이름(`name`)과 사용 언어(`language`), 그리고 일하기(`work()`) 기능을 가집니다.
+* **자식 클래스** (`BackendProgrammer`): 부모의 모든 특성을 물려받은 상태에서, 백엔드 개발자만의 고유한 기능(예: `work()` 메서드의 재정의)을 추가로 가집니다.
 
 ### 🧱 2. 생성자(Constructor)와 `super()`
 객체가 생성될 때 가장 먼저 호출되는 특별한 메서드가 **생성자**입니다.
 * **기본 생성자의 소멸**: 자바에서는 개발자가 생성자를 하나도 만들지 않으면 컴파일러가 아무 내용이 없는 '기본 생성자'를 자동으로 만들어 줍니다. 하지만 `Programmer(String name, String language)` 처럼 **매개변수가 있는 생성자를 직접 정의하면 기본 생성자는 자동으로 만들어지지 않습니다.**
-* **부모 생성자 호출 (`super`)**: 자식 클래스의 인스턴스를 만들 때, 내부적으로 부모 클래스의 멤버들도 초기화되어야 합니다. 따라서 자식 생성자의 첫 줄에는 반드시 부모 생성자를 호출하는 `super(...)`가 와야 합니다.
+* **부모 생성자 호출** (`super`): 자식 클래스의 인스턴스를 만들 때, 내부적으로 부모 클래스의 멤버들도 초기화되어야 합니다. 따라서 자식 생성자의 첫 줄에는 반드시 부모 생성자를 호출하는 `super(...)`가 와야 합니다.
 
 ### 🎭 3. 다형성(Polymorphism)과 변수 선언
 자바에서는 부모 타입의 변수로 자식 객체를 가리킬 수 있습니다. 이를 **업캐스팅(Upcasting)**이라고 합니다.
@@ -58,11 +58,11 @@ Programmer programmer2 = new BackendProgrammer("John", "Java");
 
 ### 💻 핵심 개념 비교 요약
 
-| 구분 | 정적 바인딩 (Static Binding) | 동적 바인딩 (Dynamic Binding) |
+| 구분 | 정적 바인딩(Static Binding) | 동적 바인딩(Dynamic Binding) |
 | :--- | :--- | :--- |
 | **정의** | 컴파일 시점에 참조할 대상(메서드/변수)이 결정됨 | 실행 시점(Runtime)에 실제 객체 타입을 확인하고 참조 대상을 결정함 |
 | **적용 대상** | **멤버 변수(필드)**, `static` 메서드, `private` 메서드, `final` 메서드 | **오버라이딩된 일반 메서드** |
-| **결정 기준** | 변수의 **선언된 타입** (Declared Type) | 실제 메모리에 할당된 **실제 객체 타입** (Actual Object Type) |
+| **결정 기준** | 변수의 **선언된 타입**(Declared Type) | 실제 메모리에 할당된 **실제 객체 타입**(Actual Object Type) |
 | **코드 예시** | `programmer2.version` ➡️ `Programmer` 클래스의 `"1.0"` 반환 | `programmer2.work()` ➡️ `BackendProgrammer` 객체의 `work()` 실행 |
 
 ---
@@ -81,8 +81,8 @@ Programmer programmer2 = new BackendProgrammer("John", "Java");
 * `p.work()`는 **"John은 Java로 백엔드 프로그래밍을 합니다."**를 출력합니다.
 
 **이유:**
-자바에서 **멤버 변수(필드)는 다형성이 적용되지 않으며 정적 바인딩(Static Binding)**을 따릅니다. 따라서 컴파일러는 변수 `p`의 선언 타입인 `Programmer` 클래스에 정의된 `version` 필드를 연결하므로 `"1.0"`이 반환됩니다.
-반면, **일반 인스턴스 메서드는 동적 바인딩(Dynamic Binding)**을 따릅니다. 런타임에 변수 `p`가 가리키는 실제 인스턴스인 `BackendProgrammer` 클래스에서 재정의된(Overridden) `work()` 메서드를 호출하므로 자식 클래스의 메시지가 출력됩니다.
+자바에서 **멤버 변수(필드)**는 다형성이 적용되지 않으며 **정적 바인딩(Static Binding)**을 따릅니다. 따라서 컴파일러는 변수 `p`의 선언 타입인 `Programmer` 클래스에 정의된 `version` 필드를 연결하므로 `"1.0"`이 반환됩니다.
+반면, **일반 인스턴스 메서드**는 **동적 바인딩(Dynamic Binding)**을 따릅니다. 런타임에 변수 `p`가 가리키는 실제 인스턴스인 `BackendProgrammer` 클래스에서 재정의된(Overridden) `work()` 메서드를 호출하므로 자식 클래스의 메시지가 출력됩니다.
 
 #### Q3. `@Override` 어노테이션의 역할과 컴파일 에러 예시(`work2()`)에 대해 설명해주세요.
 **A3.**
